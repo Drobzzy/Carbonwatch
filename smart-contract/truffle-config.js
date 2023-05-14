@@ -1,16 +1,19 @@
 require('dotenv').config();
 
 const HDWalletProvider = require('@truffle/hdwallet-provider');  // @notice - Should use new module.
-const mnemonic = process.env.MNEMONIC;
+// const mnemonic = process.env.MNEMONIC;
+const mnemonic = "e3a071610d9e44a62f583397309b196c90f75376181cd831fd1bb8031d35e204";
 
 module.exports = {
   networks: {
     polygon_testnet: {  /// Mumbai testnet of Matic
-      provider: () => new HDWalletProvider(mnemonic, "https://matic-mumbai.chainstacklabs.com"),
+      provider: () => new HDWalletProvider(mnemonic, "https://rpc-mumbai.maticvigil.com"),
       network_id: 80001,
       confirmations: 2,
       timeoutBlocks: 200,
-      skipDryRun: true
+      skipDryRun: true,
+      disableConfirmationListener: true,
+      pollingInterval: 1800000
     },
     goerli: {
       provider: () => new HDWalletProvider(mnemonic, "https://goerli.infura.io/v3/" + process.env.INFURA_KEY),
